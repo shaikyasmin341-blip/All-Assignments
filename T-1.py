@@ -1,38 +1,17 @@
-#Task Description #1 – Stack class implementation
-#Task: Ask AI to implement a stack class with push(), pop(), peek() andis_empty() methods
+#Write python code for linear_search () function to search a value in a list and extract its index.
 
-class Stack:
-    def __init__(self):
-        self.items = []
-    def push(self, item):
-        """Add an item to the top of the stack."""
-        self.items.append(item)
-    def pop(self):
-        """Remove and return the item from the top of the stack. 
-        Raises IndexError if the stack is empty."""
-        if self.is_empty():
-            raise IndexError("pop from empty stack")
-        return self.items.pop()
-    def peek(self):
-        """Return the item at the top of the stack without removing it.
-        Raises IndexError if the stack is empty."""
-        if self.is_empty():
-            raise IndexError("peek from empty stack")
-        return self.items[-1]
-    def is_empty(self):
-        """Return True if the stack is empty, False otherwise."""
-        return len(self.items) == 0
+def linear_search(arr, target):
+    for index in range(len(arr)):
+        if arr[index] == target:
+            return index
+    return -1  # Return -1 if the target is not found
 # Example usage:
-if __name__ == "__main__":
-    stack = Stack()
-    stack.push(1)
-    stack.push(2)
-    stack.push(3)
-    print(stack.peek())  # Output: 3
-    print(stack.pop())   # Output: 3
-    print(stack.is_empty())  # Output: False
-    print(stack.pop())   # Output: 2
-    print(stack.pop())   # Output: 1
-    print(stack.is_empty())  # Output: True
+my_list = [10, 20, 30, 40, 50]
+target_value = 30
+result = linear_search(my_list, target_value)
+if result != -1:
+    print(f"Element found at index: {result}")
+else:
+    print("Element not found in the list.")
 
     

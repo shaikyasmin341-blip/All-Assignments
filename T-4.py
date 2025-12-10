@@ -1,53 +1,28 @@
-#Task Description #4 – Binary Search Tree (BST)
-#ask: Ask AI to generate a simple BST with insert() and inorder_traversal().
-
-class TreeNode:
-    def __init__(self, key):
-        self.left = None
-        self.right = None
-        self.val = key
-class BST:
-    def __init__(self):
-        self.root = None
-
-    def insert(self, key):
-        if self.root is None:
-            self.root = TreeNode(key)
-        else:
-            self._insert_rec(self.root, key)
-
-    def _insert_rec(self, node, key):
-        if key < node.val:
-            if node.left is None:
-                node.left = TreeNode(key)
-            else:
-                self._insert_rec(node.left, key)
-        else:
-            if node.right is None:
-                node.right = TreeNode(key)
-            else:
-                self._insert_rec(node.right, key)
-
-    def inorder_traversal(self):
-        return self._inorder_rec(self.root)
-
-    def _inorder_rec(self, node):
-        res = []
-        if node:
-            res = self._inorder_rec(node.left)
-            res.append(node.val)
-            res = res + self._inorder_rec(node.right)
-        return res
-
-# Example usage:
-if __name__ == "__main__":
-    bst = BST()
-    bst.insert(50)
-    bst.insert(30)
-    bst.insert(20)
-    bst.insert(40)
-    bst.insert(70)
-    bst.insert(60)
-    bst.insert(80)
-
-    print("Inorder traversal of the BST:", bst.inorder_traversal())
+# Task Description #4 – Gradient Descent Optimization
+# Task: Find x that minimizes f(x) = 2x^3 + 4x + 5
+def f(x):
+    return 2 * x**3 + 4 * x + 5
+def df(x):
+    return 6 * x**2 + 4   # derivative of f(x)
+def gradient_descent(starting_x, learning_rate, num_iterations):
+    x = starting_x
+    for i in range(num_iterations):
+        grad = df(x)
+        # Safety check to avoid overflow
+        if abs(grad) > 1e6:
+            print("Gradient exploded. Stopping early.")
+            break
+        x = x - learning_rate * grad
+        # Value control to avoid very large numbers
+        if abs(x) > 1e6:
+            print("Value became too large. Stopping early.")
+            break
+    return x
+# Parameters
+starting_x = 0.0
+learning_rate = 0.0001   # Smaller learning rate (prevents overflow)
+num_iterations = 10000
+# Run gradient descent
+optimal_x = gradient_descent(starting_x, learning_rate, num_iterations)
+print("Approximate x value returned by Gradient Descent:", optimal_x)
+print("Value of f(x) at this point:", f(optimal_x))
